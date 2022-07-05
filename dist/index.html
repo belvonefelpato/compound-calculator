@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Compounder</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="AlterVista - Editor HTML">
+  <title></title>
+</head>
+<body>
+  
+<div class="compounder">
+ <div class="title">Compound Calculator</div>
+ <div class="elements">
+  <div class="option">
+   <p>Amount USDT Invested</p>
+   <input class="inputField" id="in" type="text">
+  </div>
+  <div class="option">
+   <p>How many days:</p>
+   <input class="inputField" id="days" type="text">
+  </div>
+  <div class="option">
+   <p>Percentage<br>Range</p>
+   <input class="inputField" placeholder="Min" id="min" type="text" value="0">
+   <input class="inputField" placeholder="Max" id="max" type="text" value="2">
+  </div>
+  <div id="disclaimer"></div>
+  <button id="buttonResult" class="resultButton" onclick="preF1(1)">Calculate</button>
+ </div>
+  
+  
+  <div id="textArea" class="textAreaContainerHidden">
+    <p id="res"></p>
+    <p id="res2"></p>
+    <a style="color: white; cursor: pointer;" onclick="scrollToTop();">Go to Top</a>
+    <br>
+  </div>
+</div>
+  
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
