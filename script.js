@@ -1,6 +1,24 @@
+var min
+var max
+var initial
+var days
+
+window.addEventListener('load', 
+  function() { 
+    min = document.getElementById("min").value
+    max = document.getElementById("max").value
+    initial = document.getElementById("in").value
+    days = document.getElementById("days").value
+
+    var href = window.location.href;
+
+    if(href.indexOf("?") > -1) retrieveUrlParam()
+    else addOrUpdateUrlParam(initial, days, min, max)
+
+  }, false);
+
+
 setInterval(function(){
-  var min = document.getElementById("min").value
-  var max = document.getElementById("max").value
   disclaimer = document.getElementById("disclaimer")
  
       disclaimer.innerHTML = "*Compounding on an average of " + (parseFloat(min)+parseFloat(max))/2 + "%"
@@ -31,6 +49,9 @@ function f1(number){
   max = document.getElementById("max").value
   initial = document.getElementById("in").value
   days = document.getElementById("days").value
+
+  addOrUpdateUrlParam(initial, days, min, max)
+
   x = 0
   percentages = 0.0
   result=parseFloat(initial) 
@@ -98,4 +119,31 @@ else{
 function scrollToTop(){
   var textArea = document.getElementById("textArea");
   textArea.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+function addOrUpdateUrlParam(initial, days, min, max)
+{
+  var href = window.location.href;
+  var regex = new RegExp("[&\\?]" + "amount" + "=");
+  if(regex.test(href))
+  {
+    regex = new RegExp("([&\\?])" + "amount" + "=\\d+");
+    window.location.href = href.replace(regex, "$1" + "initial=" + initial + "&days=" + days + "&min=" + min + "&max=" + max)
+  }
+  else
+  {
+    if(href.indexOf("?") > -1) window.location.href = href.replace(regex, "$1")
+    window.location.href = href + "?initial=" + initial + "&days=" + days + "&min=" + min + "&max=" + max
+  }
+}
+
+function retrieveUrlParam(){
+  var queryString = window.location.search
+  var urlParams = new URLSearchParams(queryString)
+
+  document.getElementById("min").value = urlParams.get('min')
+  document.getElementById("max").value = urlParams.get('max')
+  document.getElementById("in").value = urlParams.get('initial')
+  document.getElementById("days").value = urlParams.get('days')
 }
